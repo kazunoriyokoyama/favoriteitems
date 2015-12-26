@@ -1,0 +1,24 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+  <%= link_to "", '#', id: "logo" %>
+  <nav>
+    <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+    <% if user_signed_in? %> 
+      <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
+      <!-- *_path はUserモデルを作成したときに、
+        deviseにより自動で作成されてますので、rake routesで確認できます -->
+     <ul class="nav navbar-nav navbar-right">   
+      <li>Logged in as <strong><%= current_user.email %></strong>.</li>
+      <li><%= link_to 'プロフィール変更', edit_user_registration_path %> </li>
+      <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+     </ul>
+    <% else %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "サインイン", new_user_registration_path %> </li>
+      <li><%= link_to "ログイン", new_user_session_path %></li>
+      <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></li>
+     </ul>
+    <% end %>
+  </nav>
+  </div>
+</header>
