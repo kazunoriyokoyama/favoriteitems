@@ -1,19 +1,39 @@
 <h1>好きなタレント</h1>
-
-<% @messages.each do |message| %>
-  名前:<%= message.name %>
-  内容:<%= message.body %>
-  性別:<%= message.sex %>
-  <br>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    好きなタレント一覧
+  </div>
+  <div class="panel-body">
+  <% @messages.each do |message| %>
+    名前:<%= message.name %>
+    内容:<%= message.body %>
+    性別:<%= message.sex %>
+    <br>
+  <% end %>
+  </div>
+</div>
 
 <%= form_for(@message) do |f| %>
+  <% if @message.errors.present? %>
+    <div class="alert alert-danger">
+      <%= alert %>
+      <ul>
+        <% @message.errors.full_messages.each do |full_message| %>
+          <li>
+            <%= full_message %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  <% end %>
+
+
   名前:
   <%= f.text_field :name %>
 
   内容:
   <%= f.text_field :body %>
   性別：
-  <%= f.number_field :sex %>
-  <%= f.submit %>
+  <%= f.select :sex, { 男: 1, 女: 2} %>
+  <%= f.submit class: "btn btn-sm btn-primary" %>
 <% end %>
