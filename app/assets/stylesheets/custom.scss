@@ -2,3 +2,20 @@
 @import "bootstrap";
 
 /* universal */
+
+
+
+
+footer {
+  width:100%;
+  padding: 40px 0;
+  font-size: 13px;
+  position: absolute; 
+  bottom: 0;
+  .copyright {
+    width:900px;
+    text-align: center;
+    margin:0 auto;
+    color: #aaa;
+  }
+}
