@@ -1,20 +1,50 @@
 <h1>好きなタレント</h1>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    好きなタレント一覧
+
+<div class="row">
+  <aside class="col-md-6">
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      好きなタレント 女性一覧<i class="glyphicon glyphicon-heart"></i> (<%= @messages_f.count %>投稿）
+    </div>
+    <div class="panel-body">
+    <% @messages_f.each do |message| %>
+          <%= message.name %>
+          <span class="coment"><%= message.body %></span>
+          <%= message.sex %>
+      (<%= link_to "edit" , edit_message_path(message) %>
+      <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>)
+      <a href="https://twitter.com/share" class="twitter-share-button"{count}  data-lang="ja">ツィート</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <br>
+    <% end %>
+    </div>
   </div>
-  <div class="panel-body">
-  <% @messages.each do |message| %>
-    名前:<%= message.name %>
-    内容:<%= message.body %>
-    性別:<%= message.sex %>
-    (<%= link_to "edit" , edit_message_path(message) %>
-    <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>)
-    <a href="https://twitter.com/share" class="twitter-share-button"{count}  data-lang="ja">ツイート</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <br>
-  <% end %>
+  </aside>
+  <div class="col-md-6">
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      好きなタレント 男性一覧<i class="glyphicon glyphicon-star-empty"></i> (<%= @messages_m.count %>投稿）
+    </div>
+    <div class="panel-body">
+    <% @messages_m.each do |message| %>
+             <%= message.name %>
+             <span class="coment"><%= message.body %></span>
+             <%= message.sex %>
+      (<%= link_to "edit" , edit_message_path(message) %>
+      <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>)  
+      <a href="https://twitter.com/share" class="twitter-share-button"{count}  data-lang="ja">ツィート</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>  
+       <br>  
+    <% end %>
+    </div>
+  </div>
   </div>
 </div>
+
+<h2>推しタレントの好きなとこドシドシ投稿してね！</h1>
+
+
 
 <%= render 'form' %>

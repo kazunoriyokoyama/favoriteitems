@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
   
   def index
     @message = Message.new
-    @messages = Message.all
+    @messages_f = Message.where("sex = '2'")
+    @messages_m = Message.where("sex = '1'")
   end
   
   def create
@@ -12,7 +13,8 @@ class MessagesController < ApplicationController
       redirect_to messages_path , notice: 'メッセージを保存しました'
     else
       # メッセージが保存できなかった時
-      @messages = Message.all
+      @messages_f = Message.where("sex = '2'")
+      @messages_m = Message.where("sex = '1'")
       flash.now[:alert] = "メッセージの保存に失敗しました。"
       render 'messages/index'
     end
