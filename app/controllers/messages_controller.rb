@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
   
   def index
     @message = Message.new
-    @messages_f = Message.where("sex = '2'")
-    @messages_m = Message.where("sex = '1'")
+    @messages_f = Message.where("sex = '2'").limit(15)
+    @messages_m = Message.where("sex = '1'").limit(15)
   end
   
   def create
